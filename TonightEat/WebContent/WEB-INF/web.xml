@@ -19,4 +19,14 @@
     <servlet-name>init</servlet-name>
     <url-pattern>/init</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RecipeViewServlet</display-name>
+    <servlet-name>RecipeViewServlet</servlet-name>
+    <servlet-class>recipe.RecipeViewServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RecipeViewServlet</servlet-name>
+    <url-pattern>/RecipeViewServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
