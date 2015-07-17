@@ -29,4 +29,14 @@
     <servlet-name>RecipeViewServlet</servlet-name>
     <url-pattern>/RecipeViewServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RecipePostServlet</display-name>
+    <servlet-name>RecipePostServlet</servlet-name>
+    <servlet-class>recipe.RecipePostServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RecipePostServlet</servlet-name>
+    <url-pattern>/RecipePostServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
