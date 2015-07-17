@@ -26,7 +26,8 @@ $(function() {
 </script>
 </head>
 <body>
-<form id="post" action="" method="post">
+<div align="center">
+<form id="post" action="../RecipePostServlet" method="post">
 <div id="datepicker"></div>
 <input type="text" id="datetxt"><br/>
   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -39,12 +40,9 @@ $(function() {
   </div>
   <br/>
   <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-  Button
-</button>
-<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-  Button
+  µî·Ï
 </button>
 </form>
-
+</div>
 </body>
 </html>
