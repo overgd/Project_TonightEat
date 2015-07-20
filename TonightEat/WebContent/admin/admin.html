@@ -21,33 +21,47 @@ $(document).ready(function(){
 	$("#postbtn").click(function(){
         $("#content").attr("src", "recipepost.jsp");
     });
+	$("#datebtn").click(function(){
+        $("#content").attr("src", "searchdate.jsp");
+    });
 });
 </script>
 </head>
 <body>
 <div class="admin-layout">
 		<div
+		
 			class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 			<header class="mdl-layout__header">
 				<div class="mdl-layout__header-row">
 					<div class="mdl-layout-spacer">야식뭐먹지 관리페이지</div>
+					<form action="#">
+					  <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable textfield-demo">
+					    <label class="mdl-button mdl-js-button mdl-button--icon" for="searchbtn">
+					      <i class="material-icons">search</i>
+					    </label>
+					    <div class="mdl-textfield__expandable-holder">
+					      <input class="mdl-textfield__input" type="text" id="searchbtn" />
+					      <label class="mdl-textfield__label" for="sample-expandable"></label>
+					    </div>
+					  </div>
+					</form>
 				</div>
+				
 			</header>
 			<div class="mdl-layout__drawer">
 				<span class="mdl-layout-title">메뉴</span>
 				<nav class="mdl-navigation">
 					<a id="postbtn" class="mdl-navigation__link">레시피등록</a> 
-					<a id="searchbtn" class="mdl-navigation__link">레시피찾기</a>
-					<a id="keyword" class="mdl-navigation__link">ㄴ키워드찾기</a>
-					<a id="date" class="mdl-navigation__link">ㄴ날짜찾기</a>
+					<a id="datebtn" class="mdl-navigation__link">날짜로찾기</a>
 				</nav>
 			</div>
 			<main class="mdl-layout__content">
-			<iframe id="content" height="600px"></iframe>
+			<iframe id="content" height="700dp"></iframe>
 			</main>
 		<footer class="mdl-mini-footer">
 		<div class="mdl-mini-footer--right-section">
-		<p class="mdl-typography--font-light">Satellite imagery: © 2014 Astrium, DigitalGlobe</p>
+		<p class="mdl-typography--font-light">야식뭐먹지?: © 2015 overlab</p>
 		</div>
 		</footer>
 		</div>
