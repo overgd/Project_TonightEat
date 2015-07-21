@@ -17,20 +17,34 @@
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script src="//github.com/fyneworks/multifile/blob/master/jQuery.MultiFile.min.js" type="text/javascript"></script>
-<script>
+<script language="JavaScript" type="text/javascript">
 $(document).ready(function(){
 	$("#postbtn").click(function(){
         $("#content").attr("src", "recipepost.jsp");
+        resizeFrame("recipepost.jsp");
     });
 	$("#datebtn").click(function(){
         $("#content").attr("src", "searchdate.jsp");
     });
 });
-$('#content').iframeAutoHeight({
-	minHeight: 100,
-	heightOffset: 50
-	});
-});
+window.onload = function() {
+    var lastHeight = 0;
+    var curHeight = 0;
+    var targetFrame = document.getElementById('content'); // iframe id 입력
+ 
+    targetFrame.onload = function(){
+        curHeight = targetFrame.contentWindow.document.body.scrollHeight + 'px';
+        targetFrame.style.height = curHeight;
+    }
+ 
+    setInterval(function(){
+            curHeight = targetFrame.contentWindow.document.body.scrollHeight + 'px';
+            if ( curHeight != lastHeight ) {
+              targetFrame.style.height = curHeight;
+              lastHeight = curHeight;
+            }
+    },500);
+}
 </script>
 <style>
 </style>
@@ -64,7 +78,7 @@ $('#content').iframeAutoHeight({
 				</nav>
 			</div>
 			<main class="mdl-layout__content">
-			<iframe id="content" style='width:100%; height: 100%;' scrolling=yes frameborder=0 onLoad="setIFrameHeight(this)"></iframe>
+			<iframe id="content" width="100%" scrolling="no" frameborder=0></iframe>  
 			</main>
 		<footer class="mdl-mini-footer">
 		<div class="mdl-mini-footer--right-section">
@@ -72,7 +86,6 @@ $('#content').iframeAutoHeight({
 		</div>
 		</footer>
 		</div>
-
 	</div>
 </body>
 </html>

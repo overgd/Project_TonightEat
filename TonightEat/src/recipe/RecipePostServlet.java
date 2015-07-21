@@ -1,6 +1,8 @@
 package recipe;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,8 +26,27 @@ public class RecipePostServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
+		request.setCharacterEncoding("UTF-8");
+		
+		String date = request.getParameter("datetxt");
+		String subject1 = request.getParameter("subject1");
+		String content1 = request.getParameter("content1");
+		String subject2 = request.getParameter("subject2");
+		String content2 = request.getParameter("content2");
+		String subject3 = request.getParameter("subject3");
+		String content3 = request.getParameter("content3");
+		
+		request.setAttribute("DATE", date);
+		request.setAttribute("SUBJECT1", subject1);
+		request.setAttribute("CONTENT1", content1);
+		request.setAttribute("SUBJECT2", subject2);
+		request.setAttribute("CONTENT2", content2);
+		request.setAttribute("SUBJECT3", subject3);
+		request.setAttribute("CONTENT3", content3);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("admin/recipeview.jsp");
+		rd.forward(request, response);
 		
 	}
 

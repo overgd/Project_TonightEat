@@ -39,8 +39,8 @@ $(document).ready(function () {
 	display: block;
 	right: 0;
 	bottom: 0;
-	margin-right: 40px;
-	margin-bottom: 40px;
+	margin-right: 10px;
+	margin-bottom: 5px;
 	z-index: 900;
 	color: #ffffff;
 }
@@ -55,19 +55,35 @@ $(document).ready(function () {
 <body>
 	<div align="center">
 		<form id="post" action="../RecipePostServlet" method="post">
-			<div class="mdl-textfield mdl-js-textfield textfield-date">
-				<input class="mdl-textfield__input" type="text" id="datetxt">
-				<label class="mdl-textfield__label" for="datetxt">날짜</label>
-			</div><br/>
+			<br/>
+			<label for="datetxt">날짜선택</label>
+			<input type="text" id="datetxt" name="datetxt">
+			<br/>
 			<div class="mdl-textfield mdl-js-textfield textfield-subject">
-				<input class="mdl-textfield__input" type="text" id="subject" name="subject" />
-				<label class="mdl-textfield__label" for="subject">제목</label>
+				<input class="mdl-textfield__input" type="text" id="subject" name="subject1" />
+				<label class="mdl-textfield__label" for="subject1">제목</label>
 			</div><br/>
 			<div class="mdl-textfield mdl-js-textfield textfield-content">
-				<textarea class="mdl-textfield__input" type="text" rows= "3" id="content" name="content" ></textarea>
-				<label class="mdl-textfield__label" for="content">내용</label>
+				<textarea class="mdl-textfield__input" type="text" rows= "10" id="content" name="content1" ></textarea>
+				<label class="mdl-textfield__label" for="content1">내용</label>
 			</div><br/>
-			<input type="file" multiple class="multi with-preview"  maxlength="4" accept="gif|jpg|png|jpeg"/>
+			<div class="mdl-textfield mdl-js-textfield textfield-subject">
+				<input class="mdl-textfield__input" type="text" id="subject" name="subject2" />
+				<label class="mdl-textfield__label" for="subject2">제목</label>
+			</div><br/>
+			<div class="mdl-textfield mdl-js-textfield textfield-content">
+				<textarea class="mdl-textfield__input" type="text" rows= "10" id="content" name="content2" ></textarea>
+				<label class="mdl-textfield__label" for="content2">내용</label>
+			</div><br/>
+			<div class="mdl-textfield mdl-js-textfield textfield-subject">
+				<input class="mdl-textfield__input" type="text" id="subject" name="subject3" />
+				<label class="mdl-textfield__label" for="subject3">제목</label>
+			</div><br/>
+			<div class="mdl-textfield mdl-js-textfield textfield-content">
+				<textarea class="mdl-textfield__input" type="text" rows= "10" id="content" name="content3" ></textarea>
+				<label class="mdl-textfield__label" for="content3">내용</label>
+			</div><br/>
+			<input type="file" multiple class="multi with-preview"  maxlength="3" accept="gif|jpg|png|jpeg"/>
 			<button class="right-under-submit-btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
 			등록
 			</button>
