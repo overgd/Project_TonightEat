@@ -4,6 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.red-deep_orange.min.css" />
@@ -15,7 +16,8 @@
 	href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
 	type="text/css">
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
 <title>Insert title here</title>
 <style>
   .demo-card-square.mdl-card {
@@ -30,6 +32,10 @@
 </style>
 </head>
 <body>
+<div class="fotorama" data-arrows="true" data-width="100%" data-ratio="965/643" data-allowfullscreen="true" data-nav="thumbs">
+<img src="" data-caption=""/>
+</div>
+${IMAGE }
 ${DATE }
 <div class="mdl-card mdl-shadow--2dp demo-card-square">
   <div class="mdl-card__title mdl-card--expand">

@@ -1,6 +1,7 @@
 package recipe;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -37,6 +38,8 @@ public class RecipePostServlet extends HttpServlet {
 		String subject3 = request.getParameter("subject3");
 		String content3 = request.getParameter("content3");
 		
+		String filename = request.getParameter("image");
+		
 		request.setAttribute("DATE", date);
 		request.setAttribute("SUBJECT1", subject1);
 		request.setAttribute("CONTENT1", content1);
@@ -44,6 +47,7 @@ public class RecipePostServlet extends HttpServlet {
 		request.setAttribute("CONTENT2", content2);
 		request.setAttribute("SUBJECT3", subject3);
 		request.setAttribute("CONTENT3", content3);
+		request.setAttribute("IMAGE", filename);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("admin/recipeview.jsp");
 		rd.forward(request, response);

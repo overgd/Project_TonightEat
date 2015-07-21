@@ -83,7 +83,7 @@ $(document).ready(function () {
 				<textarea class="mdl-textfield__input" type="text" rows= "10" id="content" name="content3" ></textarea>
 				<label class="mdl-textfield__label" for="content3">내용</label>
 			</div><br/>
-			<input type="file" multiple class="multi with-preview"  maxlength="3" accept="gif|jpg|png|jpeg"/>
+			<input type="file" multiple class="multi with-preview"  maxlength="3" accept="gif|jpg|png|jpeg" name="image"/>
 			<button class="right-under-submit-btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
 			등록
 			</button>

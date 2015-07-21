@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+<link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+<style type="text/css">
+.title_style {
+	color: #3f3c30;
+	padding-top: 10px;
+}
+.small {
+	width: 30%;
+}
+.clear_both {
+	clear: both;
+}
+.ui-btn-left {
+	float: left;
+}
+.ui-btn-right {
+	float: right;
+}
+.bold_style {
+	font-weight: bold;
+	color: #950000;
+}
+.content_style{
+	padding-right: 0px;
+	padding-left: 0px;
+}
+#video_canvas{
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 320px;
+	height: 240px;
+}
+</style>
+</head>
+<body>
+
+	<div data-role="page" id="main">
+		<div data-role="header">
+			<a href="index.html" data-icon="home" data-direction="reverse" rel="external">홈으로</a>
+			<h2 id="logo">샵</h2>
+		</div>
+		<div data-role="content">
+			<ul data-role="listview" data-inset="true">
+				<li><a href="#gallery"><img src="images/pic_i.png" alt="" class="ui-li-thumb" />
+						<h3 class="title_style">매장 이미지</h3>
+				</a></li>
+				<li><a href="#intro"> <img src="images/intro_i.png" alt="" class="ui-li-thumb" />
+						<h3 class="title_style">매장 소개</h3>
+				</a></li>
+				<li><a href="#video"> <img src="images/movie_i.png" alt="" class="ui-li-thumb" />
+						<h3 class="title_style">매장 동영상</h3>
+				</a></li>
+				<li><a href="shop_locations.html" rel="external"> <img src="images/map_i.png" alt="" class="ui-li-thumb" />
+						<h3 class="title_style">매장 위치</h3>
+				</a></li>
+			</ul>
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<h4>아래</h4>
+		</div>
+	</div>
+	<div data-role="page" id="intro">
+        <div data-role="header">
+			<a href="#main" data-icon="home" data-direction="reverse">뒤로가기</a>
+			<h1>매장 소개</h1>
+        </div>
+        <div data-role="content" >
+        	<img class="small" alt="" src="images/cb01.jpg"/>
+        	<h2>"<strong class="bold_style">분위기 좋은</strong>, 그리고 <strong class="bold_style">깨끗한 </strong>장소입니다.</h2>
+        	<div class="clear_both"></div>
+        	<p>샤라라ㄹ라라라라랄라라</p>
+        	<p>그리고 샤라라라라라라라</p>
+        </div>
+        <div data-role="footer" data-position="fixed">
+        	<h4>아래</h4>
+        </div>
+    </div>
+    <div data-role="page" id="gallery">
+        <div data-role="header">
+			<a href="#main" data-icon="home" data-direction="reverse">뒤로가기</a>
+			<h1>매장 이미지</h1>
+        </div>
+        <div data-role="content" >
+			<div class="fotorama" data-arrows="true" data-width="100%" data-ratio="965/643" data-allowfullscreen="true"
+			data-nav="thumbs">
+				<img src="images/cb01.jpg" data-caption="정문모습"/>
+				<img src="images/cb02.jpg" data-caption="이층모습"/>
+				<img src="images/cb03.jpg" data-caption="삼층모습"/>
+				<img src="images/cb04.jpg" data-caption="오층모습"/>
+				<img src="images/cb05.jpg" data-caption="육층모습"/>
+				<img src="images/cb06.jpg" data-caption="칠층모습"/>
+				<img src="images/cb07.jpg" data-caption="팔층모습"/>
+				<a href="https://www.youtube.com/watch?v=DwzUpphzAeI">홍보 동영상</a>
+			</div>
+        </div>
+        <div data-role="footer" data-position="fixed">
+        	<h4>아래</h4>
+        </div>
+    </div>
+	<div data-role="page" id="video" >
+        <div data-role="header" data-add-back-btn="true" data-back-btn-text="Back" data-back-btn-theme="b">
+			<h1>매장 동영상</h1>
+			<a href="#main" data-icon="home" data-direction="reverse">뒤로가기</a>
+        </div>
+        <div data-role="content" id="content_style">
+			<div id="video_canvas">
+				<video width="320" height="240" controls autoplay>
+					<source src="images/video.mp4" type="video/mp4"/>
+					브라우저가 지원하지 않습니다.
+				</video>
+			</div>
+        </div>
+        <div data-role="footer" data-position="fixed">
+        	<h4>아래</h4>
+        </div>
+    </div>
+</body>
+</html>
