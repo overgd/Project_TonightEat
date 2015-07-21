@@ -17,11 +17,15 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/blitzer/jquery-ui.css">
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<script>
+<script src="../jQuery.MultiFile.min.js"></script>
+<script type="text/javascript">
 $(function() {
-	$("#datepicker").datepicker({
-		altField: "#datetxt",
-	    altFormat: "yy-MM-DD-d"
+	$( "#datetxt" ).datepicker();
+});
+$(document).ready(function () {
+	$("#newpage-btn").click(function () {
+		$("#newpage").load("recipepost.jsp .post-card-square");
+		return false;
 	});
 });
 </script>
@@ -38,44 +42,37 @@ $(function() {
 	margin-right: 40px;
 	margin-bottom: 40px;
 	z-index: 900;
+	color: #ffffff;
+}
+.post-card-square > .mdl-card__title {
+	height: 320px;
+}
+#image_preview {
+	display:none;
 }
 </style>
 </head>
 <body>
 	<div align="center">
 		<form id="post" action="../RecipePostServlet" method="post">
-			<div id="datepicker"></div>
-			<input type="text" id="datetxt"><br/><br/>
-			<div class="mdl-card mdl-shadow--2dp post-card-square">
-				<div class="mdl-card__title mdl-card--expand">
-					<h2 class="mdl-card__title-text">
-						<div class="mdl-textfield mdl-js-textfield">
-							<input class="mdl-textfield__input" type="text" id="subject" />
-							<label class="mdl-textfield__label" for="subject">제목</label>
-						</div>
-					</h2>
-				</div>
-				<div class="mdl-card__supporting-text">
-					<div class="mdl-textfield mdl-js-textfield">
-						<textarea class="mdl-textfield__input" type="text" rows= "3" id="content" ></textarea>
-						<label class="mdl-textfield__label" for="content">내용</label>
-					</div>
-				</div>
-				<div class="mdl-card__menu">
-					<input type="file" class="multi with-preview" multiple />
-				</div>
+			<div class="mdl-textfield mdl-js-textfield textfield-date">
+				<input class="mdl-textfield__input" type="text" id="datetxt">
+				<label class="mdl-textfield__label" for="datetxt">날짜</label>
 			</div><br/>
-			카드추가 
-			<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect button--colored">
-				<i class="material-icons">add</i>
+			<div class="mdl-textfield mdl-js-textfield textfield-subject">
+				<input class="mdl-textfield__input" type="text" id="subject" name="subject" />
+				<label class="mdl-textfield__label" for="subject">제목</label>
+			</div><br/>
+			<div class="mdl-textfield mdl-js-textfield textfield-content">
+				<textarea class="mdl-textfield__input" type="text" rows= "3" id="content" name="content" ></textarea>
+				<label class="mdl-textfield__label" for="content">내용</label>
+			</div><br/>
+			<input type="file" multiple class="multi with-preview"  maxlength="4" accept="gif|jpg|png|jpeg"/>
+			<button class="right-under-submit-btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+			등록
 			</button>
-			<br/>
-			<div class="right-under-submit-btn">
-				<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
-				 등록
-				</button>
-			</div>
 		</form>
 	</div>
+	
 </body>
 </html>

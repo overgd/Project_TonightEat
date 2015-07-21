@@ -22,7 +22,7 @@
 $(function() {
 	$("#datepicker").datepicker({
 		altField: "#datetxt",
-	    altFormat: "yy-MM-DD-d"
+	    altFormat: "yy-MM-d-DD"
 	});
 });
 </script>
