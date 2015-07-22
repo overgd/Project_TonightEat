@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.red-deep_orange.min.css" />
+<script
+	src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet"
+	href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
+	type="text/css">
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/blitzer/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="//www.parsecdn.com/js/parse-1.5.0.min.js"></script>
+<script>
+$(function() {
+	$("#datepicker").datepicker({
+		altField: "#datetxt",
+	    altFormat: "yy-MM-d-DD"
+	});
+});
+
+Parse.initialize("tl9loodjjnPN8aIwScr01pSNUXATyJq9cGanEk30", "glrFWsBB5sNsuX8WB3JiNh3YuZnlB3p1crSkPKrC");
+
+$(document).ready(function () {
+	
+	$("#searchbtn").click(function(event) {
+		event.preventDefault();
+		var Recipe = Parse.Object.extend("Recipe");
+		var query = new Parse.Query(Recipe);
+		var dateval = new Date($('#datepicker').val());
+		query.equalTo("date", dateval);
+		query.find({
+			success: function(results) {
+				alert(results.length + " 개의 레시피가 있습니다.");
+    			// Do something with the returned Parse.Object values
+  				$(".list").html(" ");
+    			for (var i = 0; i < results.length; i++) {
+   					var object = results[i];
+   					$(".list").append("<tr><td>"+
+   							object.id+
+   							"</td><td>"+object.get("subject")+
+   							"</td><td>"+"<button onclick='viewsubmit(this)' value='"+object.id+"' id='item"+i+"' class='mdl-button mdl-js-button mdl-button--colored'><i class='material-icons md-18'>visibility</i></button>"+
+   							"</td></tr>");
+   					$("#cnt").val(i+1);
+    			}
+			},
+ 			error: function(error) {
+				alert("Error: " + error.code + " " + error.message);
+			}
+		});	
+	});
+	
+});
+
+function viewsubmit(item) {
+	$("#objectId").val(item.value);
+	$("#itemlist").submit();
+}
+</script>
+</head>
+<body>
+<div align="center">
+<form action="" method="post">
+<div id="datepicker"></div>
+<input type="text" id="datetxt"><br/><br/>
+<button id="searchbtn" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+찾기
+</button>
+</form><br/>
+<form id='itemlist' name='itemlist' action='recipeview.html' method='get'>
+<input type="hidden" id="objectId" name='objectId' value=""/>
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+  <thead>
+    <tr>
+      <th class="mdl-data-table__cell--non-numeric">글번호</th>
+      <th>제목</th>
+      <th>보기</th>
+    </tr>
+  </thead>
+  <tbody class="list">
+
+  </tbody>
+</table>
+<input type="hidden" name="cnt" id="cnt"/>
+</form><br/>
+</div>
+</body>
+</html>

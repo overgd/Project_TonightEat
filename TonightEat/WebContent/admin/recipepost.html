@@ -1,6 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,7 +17,6 @@
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script src="//www.parsecdn.com/js/parse-1.5.0.min.js"></script>
 <script type="text/javascript">
-
 $(function() {
 	$( "#datetxt" ).datepicker();
 });
@@ -27,15 +24,53 @@ $(function() {
 Parse.initialize("tl9loodjjnPN8aIwScr01pSNUXATyJq9cGanEk30", "glrFWsBB5sNsuX8WB3JiNh3YuZnlB3p1crSkPKrC");
 
 $(document).ready(function () {
-	$("#newpage-btn").click(function () {
-		$("#newpage").load("recipepost.jsp .post-card-square");
-		return false;
-	});
 	
-	$("#submit").click(function () {
+	$("#submit1").click(function(event) {
 		
-		document.form.submit();
+		event.preventDefault();
 		
+		var Recipe = Parse.Object.extend("Recipe");
+		var recipe = new Recipe();
+		var dateval = new Date($('#datetxt').val());
+		
+		if($("#image").val() != null) {
+			var parseFile;
+			var fileUploadControl = $("#image")[0];
+			if (fileUploadControl.files.length > 0) {
+				
+			  var file = fileUploadControl.files[0];
+			  var name = "photo.jpg";
+	
+			  parseFile = new Parse.File(name, file);
+			  parseFile.save().then(function() {
+				  // The file has been saved to Parse.
+				}, function(error) {
+				  // The file either could not be read, or could not be saved to Parse.
+				  alert(error.message);
+				});
+			}
+		};
+		recipe.save({
+			subject: $('#subject').val(),
+			content: $('#content').val().replace(/\n/g, '<br/>'),
+			date: dateval,
+			image: parseFile
+		
+		}, {
+			success: function(gameScore) {
+				
+			// The object was saved successfully.
+				$("#objectId").val(recipe.id);
+				alert("ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤.");	
+				$("#myform").submit();
+				
+			},
+			error: function(gameScore, error) {
+			    // The save failed.
+			    // error is a Parse.Error with an error code and message.
+			    alert("ì—ëŸ¬ì…ë‹ˆë‹¤."+error.message);
+			}
+		});
 	});
 });
 </script>
@@ -64,24 +99,26 @@ $(document).ready(function () {
 </head>
 <body>
 	<div align="center">
-		<form action="recipeview.jsp" method="post">
+		
 			<br/>
-			<input type="text" id="objectId" name="objectId"/>
-			<label for="datetxt">³¯Â¥¼±ÅÃ</label>
+			
+			<label for="datetxt">ë‚ ì§œì„ íƒ</label>
 			<input type="text" id="datetxt" name="datetxt">
 			<br/>
 			<div class="mdl-textfield mdl-js-textfield textfield-subject">
 				<input class="mdl-textfield__input" type="text" id="subject" name="subject" />
-				<label class="mdl-textfield__label" for="subject">Á¦¸ñ</label>
+				<label class="mdl-textfield__label" for="subject">ì œëª©</label>
 			</div><br/>
 			<div class="mdl-textfield mdl-js-textfield textfield-content">
 				<textarea class="mdl-textfield__input" type="text" rows= "10" id="content" name="content" ></textarea>
-				<label class="mdl-textfield__label" for="content">³»¿ë</label>
+				<label class="mdl-textfield__label" for="content">ë‚´ìš©</label>
 			</div><br/>
 			</div><br/>
 			<input type="file" name="image" id="image"/>
-			<button id="submit" class="right-under-submit-btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-			µî·Ï
+		<form id="myform" action="recipeview.html" method="get" >
+			<input type="hidden" id="objectId" name="objectId"/>
+			<button id="submit1" class="right-under-submit-btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+			ë“±ë¡
 			</button>
 		</form>
 	</div>

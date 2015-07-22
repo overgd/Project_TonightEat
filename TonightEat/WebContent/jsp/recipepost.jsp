@@ -19,7 +19,6 @@
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script src="//www.parsecdn.com/js/parse-1.5.0.min.js"></script>
 <script type="text/javascript">
-
 $(function() {
 	$( "#datetxt" ).datepicker();
 });
@@ -27,15 +26,53 @@ $(function() {
 Parse.initialize("tl9loodjjnPN8aIwScr01pSNUXATyJq9cGanEk30", "glrFWsBB5sNsuX8WB3JiNh3YuZnlB3p1crSkPKrC");
 
 $(document).ready(function () {
-	$("#newpage-btn").click(function () {
-		$("#newpage").load("recipepost.jsp .post-card-square");
-		return false;
-	});
 	
-	$("#submit").click(function () {
+	$("#submit1").click(function(event) {
 		
-		document.form.submit();
+		event.preventDefault();
 		
+		var Recipe = Parse.Object.extend("Recipe");
+		var recipe = new Recipe();
+		var dateval = new Date($('#datetxt').val());
+		
+		if($("#image").val() != null) {
+			var parseFile;
+			var fileUploadControl = $("#image")[0];
+			if (fileUploadControl.files.length > 0) {
+				
+			  var file = fileUploadControl.files[0];
+			  var name = "photo.jpg";
+	
+			  parseFile = new Parse.File(name, file);
+			  parseFile.save().then(function() {
+				  // The file has been saved to Parse.
+				}, function(error) {
+				  // The file either could not be read, or could not be saved to Parse.
+				  alert(error.message);
+				});
+			}
+		};
+		recipe.save({
+			subject: $('#subject').val(),
+			content: $('#content').val().replace(/\n/g, '<br/>'),
+			date: dateval,
+			image: parseFile
+		
+		}, {
+			success: function(gameScore) {
+				
+			// The object was saved successfully.
+				$("#objectId").val(recipe.id);
+				alert("등록되었습니다.");	
+				$("#myform").submit();
+				
+			},
+			error: function(gameScore, error) {
+			    // The save failed.
+			    // error is a Parse.Error with an error code and message.
+			    alert("에러입니다."+error.message);
+			}
+		});
 	});
 });
 </script>
@@ -64,9 +101,9 @@ $(document).ready(function () {
 </head>
 <body>
 	<div align="center">
-		<form action="recipeview.jsp" method="post">
+		<form id="myform" action="recipeview.jsp" method="get" >
 			<br/>
-			<input type="text" id="objectId" name="objectId"/>
+			<input type="hidden" id="objectId" name="objectId"/>
 			<label for="datetxt">날짜선택</label>
 			<input type="text" id="datetxt" name="datetxt">
 			<br/>
@@ -80,7 +117,7 @@ $(document).ready(function () {
 			</div><br/>
 			</div><br/>
 			<input type="file" name="image" id="image"/>
-			<button id="submit" class="right-under-submit-btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+			<button id="submit1" class="right-under-submit-btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
 			등록
 			</button>
 		</form>

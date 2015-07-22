@@ -39,4 +39,14 @@
     <servlet-name>RecipePostServlet</servlet-name>
     <url-pattern>/RecipePostServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>test</display-name>
+    <servlet-name>test</servlet-name>
+    <servlet-class>util.test</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>test</servlet-name>
+    <url-pattern>/test</url-pattern>
+  </servlet-mapping>
 </web-app>
