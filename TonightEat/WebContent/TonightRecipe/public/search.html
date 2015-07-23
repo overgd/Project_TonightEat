@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>검색</title>
+<link rel="stylesheet"
+	href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.red-deep_orange.min.css" />
+<script
+	src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet"
+	href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
+	type="text/css">
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/blitzer/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="//www.parsecdn.com/js/parse-1.5.0.min.js"></script>
+<script>
+$(function() {
+	$("#datepicker").datepicker({
+		altField: "#datetxt",
+	    altFormat: "yy-MM-d-DD"
+	});
+});
+
+Parse.initialize("tl9loodjjnPN8aIwScr01pSNUXATyJq9cGanEk30", "glrFWsBB5sNsuX8WB3JiNh3YuZnlB3p1crSkPKrC");
+
+$(document).ready(function () {
+	
+	$("#searchkeyword-div").show();
+	$("#searchdate-div").hide();
+	
+	$("#searchdate-check").click(function() {
+		$("#searchkeyword-div").slideUp();
+		$("#searchdate-div").slideDown();
+	});
+	
+	$("#searchkeyword-check").click(function() {
+		$("#searchdate-div").slideUp();
+		$("#searchkeyword-div").slideDown();
+	});
+	
+	$("#datesearchbtn").click(function(event) {
+		event.preventDefault();
+		var Recipe = Parse.Object.extend("Recipe");
+		var query = new Parse.Query(Recipe);
+		var dateval = new Date($('#datepicker').val());
+		query.equalTo("date", dateval);
+		query.find({
+			success: function(results) {
+				alert(results.length + " 개의 레시피가 있습니다.");
+    			// Do something with the returned Parse.Object values
+  				$(".list").html(" ");
+    			for (var i = 0; i < results.length; i++) {
+   					var object = results[i];
+   					$(".list").append("<tr><td>"+
+   							object.get("subject")+
+   							"</td><td>"+"<button onclick='viewsubmit(this)' value='"+object.id+"' id='item"+i+"' class='mdl-button mdl-js-button mdl-button--colored'><i class='material-icons md-18'>visibility</i></button>"+
+   							"</td></tr>");
+   					$("#cnt").val(i+1);
+    			}
+			},
+ 			error: function(error) {
+				alert("Error: " + error.code + " " + error.message);
+			}
+		});	
+	});
+	
+	$("#keysubmit").submit(function(event) {
+		event.preventDefault();
+		var Recipe = Parse.Object.extend("Recipe");
+		var query = new Parse.Query(Recipe);
+		var keyword = $("#searchkeyword").val();
+		query.contains("subject", keyword);
+		query.find({
+			success: function(results) {
+				alert(results.length + " 개의 레시피가 있습니다.");
+    			// Do something with the returned Parse.Object values
+  				$(".list").html(" ");
+    			for (var i = 0; i < results.length; i++) {
+   					var object = results[i];
+   					$(".list").append("<tr><td>"+
+   							object.get("subject")+
+   							"</td><td>"+"<button onclick='viewsubmit(this)' value='"+object.id+"' id='item"+i+"' class='mdl-button mdl-js-button mdl-button--colored'><i class='material-icons md-18'>visibility</i></button>"+
+   							"</td></tr>");
+   					$("#cnt").val(i+1);
+    			}
+			},
+ 			error: function(error) {
+				alert("Error: " + error.code + " " + error.message);
+			}
+		});
+	});
+});
+
+function viewsubmit(item) {
+	$("#objectId").val(item.value);
+	$("#itemlist").submit();
+}
+</script>
+</head>
+<body>
+<div align="center">
+<br/>
+<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="searchkeyword-check">
+  <input type="radio" id="searchkeyword-check" class="mdl-radio__button" name="options" value="" checked />
+  <span class="mdl-radio__label">키워드</span>
+</label>
+<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="searchdate-check">
+  <input type="radio" id="searchdate-check" class="mdl-radio__button" name="options" value="" />
+  <span class="mdl-radio__label">날짜</span>
+</label>
+<br/>
+
+<form id="keysubmit" action="" method="get">
+<div id="searchkeyword-div">
+<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable textfield-demo">
+    <label class="mdl-button mdl-js-button mdl-button--icon" for="searchkeyword">
+      <i class="material-icons">search</i>
+    </label>
+    <div class="mdl-textfield__expandable-holder">
+      <input class="mdl-textfield__input" type="text" id="searchkeyword" />
+      <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
+    </div>
+</div>
+</div>
+</form>
+
+<div id="searchdate-div">
+<br/>
+<div id="datepicker"></div><br/>
+<input type="hidden" id="datetxt">
+<button id="datesearchbtn" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+찾기
+</button>
+<br/><br/><br/>
+</div>
+
+
+<form id='itemlist' name='itemlist' action='recipeview.html' method='get'>
+<input type="hidden" id="objectId" name='objectId' value=""/>
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+  <thead>
+    <tr>
+      <th>레시피이름</th>
+      <th>보기</th>
+    </tr>
+  </thead>
+  <tbody class="list">
+
+  </tbody>
+</table>
+<input type="hidden" name="cnt" id="cnt"/>
+</form><br/>
+</div>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>야식뭐먹지? 관리자페이지</title>
+<link rel="stylesheet"
+	href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.red-deep_orange.min.css" />
+<script
+	src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet"
+	href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
+	rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/humanity/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="//www.parsecdn.com/js/parse-1.5.0.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+$(document).ready(function(){
+	
+	$("#postbtn").click(function(){
+        $("#content").attr("src", "recipepost.html");
+    });
+	$("#datebtn").click(function(){
+        $("#content").attr("src", "searchdate.html");
+    });
+	
+	$("#keysubmit").submit(function(event) {
+		event.preventDefault();
+		var Recipe = Parse.Object.extend("Recipe");
+		var query = new Parse.Query(Recipe);
+		var keyword = $("#searchkeyword").val();
+		
+		query.contains("subject", keyword);
+		
+		query.find({
+			success: function(results) {
+				
+    			// Do something with the returned Parse.Object values
+    			if(results.length != 0) {
+	    			for (var i = 0; i < results.length; i++) {
+	   					var object = results[i];
+	   					alert("asd");
+	    			}
+    			}
+			},
+ 			error: function(error) {
+				alert("Error: " + error.code + " " + error.message);
+			}
+		});
+	});
+	
+});
+
+window.onload = function() {
+    var lastHeight = 0;
+    var curHeight = 0;
+    var targetFrame = document.getElementById('content'); // iframe id 입력
+ 
+    targetFrame.onload = function(){
+        curHeight = targetFrame.contentWindow.document.body.scrollHeight + 'px';
+        targetFrame.style.height = curHeight;
+    }
+ 
+    setInterval(function(){
+            curHeight = targetFrame.contentWindow.document.body.scrollHeight + 'px';
+            if ( curHeight != lastHeight ) {
+              targetFrame.style.height = curHeight;
+              lastHeight = curHeight;
+            }
+    },500);
+}
+
+function getUrlParameter(sParam)
+{
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++) 
+    {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam) 
+        {
+            return sParameterName[1];
+        }
+    }
+} 
+</script>
+<style>
+</style>
+</head>
+<body>
+<div class="admin-layout">
+		<div
+			class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+			<header class="mdl-layout__header">
+				<div class="mdl-layout__header-row">
+					<div class="mdl-layout-spacer">야식뭐먹지? 관리페이지</div>
+					<form id="keysubmit" action="" method="get">
+						<div id="searchkeyword-div">
+						<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable textfield-demo">
+						    <label class="mdl-button mdl-js-button mdl-button--icon" for="searchkeyword">
+						      <i class="material-icons">search</i>
+						    </label>
+						    <div class="mdl-textfield__expandable-holder">
+						      <input class="mdl-textfield__input" type="text" id="searchkeyword" />
+						      <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
+						    </div>
+						</div>
+						</div>
+					</form>
+				</div>
+				
+			</header>
+			<div class="mdl-layout__drawer">
+				<span class="mdl-layout-title">메뉴</span>
+				<nav class="mdl-navigation">
+					<a id="postbtn" class="mdl-navigation__link">레시피등록</a> 
+					<a id="datebtn" class="mdl-navigation__link">날짜로찾기</a>
+				</nav>
+			</div>
+			<main class="mdl-layout__content">
+			<iframe id="content" width="100%" scrolling="no" frameborder=0></iframe>
+			</main>
+		<footer class="mdl-mini-footer">
+		<div class="mdl-mini-footer--right-section">
+		<p class="mdl-typography--font-light">야식뭐먹지?: © 2015 overlab</p>
+		</div>
+		</footer>
+		</div>
+	</div>
+</body>
+</html>
