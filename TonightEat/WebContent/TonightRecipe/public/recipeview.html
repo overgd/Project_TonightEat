@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.red-deep_orange.min.css" /> 
 <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/blitzer/jquery-ui.css">
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script src="//www.parsecdn.com/js/parse-1.5.0.min.js"></script>
-<title>·¹½ÃÇÇºä</title>
+<title>ë ˆì‹œí”¼ë·°</title>
 <script type="text/javascript">
 Parse.initialize("tl9loodjjnPN8aIwScr01pSNUXATyJq9cGanEk30", "glrFWsBB5sNsuX8WB3JiNh3YuZnlB3p1crSkPKrC");
 
@@ -37,7 +37,7 @@ $(document).ready(function () {
 		query.equalTo("date", todaydate);
 		query.find({
 			success: function(results) {
-				alert(results.length + " °³ÀÇ ·¹½ÃÇÇ°¡ ÀÖ½À´Ï´Ù.");
+				alert(results.length + " ê°œì˜ ë ˆì‹œí”¼ê°€ ìˆìŠµë‹ˆë‹¤.");
     			// Do something with the returned Parse.Object values
   				$(".list").html(" ");
     			for (var i = 0; i < results.length; i++) {
@@ -98,7 +98,7 @@ function viewrecipe(query, objectId) {
 			$("#content").html(content);
 		},
 		error: function(query, error) {
-			alert("½ÇÆĞ");
+			alert("ì‹¤íŒ¨");
 		}
 	});
 	
@@ -160,8 +160,8 @@ function getUrlParameter(sParam)
 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
   <thead>
     <tr>
-      <th>Á¦¸ñ</th>
-      <th>º¸±â</th>
+      <th>ì œëª©</th>
+      <th>ë³´ê¸°</th>
     </tr>
   </thead>
   <tbody class="list">

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>°Ë»ö</title>
+<title>ê²€ìƒ‰</title>
 <link rel="stylesheet"
 	href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.red-deep_orange.min.css" />
 <script
@@ -50,7 +50,7 @@ $(document).ready(function () {
 		query.equalTo("date", dateval);
 		query.find({
 			success: function(results) {
-				alert(results.length + " °³ÀÇ ·¹½ÃÇÇ°¡ ÀÖ½À´Ï´Ù.");
+				alert(results.length + " ê°œì˜ ë ˆì‹œí”¼ê°€ ìˆìŠµë‹ˆë‹¤.");
     			// Do something with the returned Parse.Object values
   				$(".list").html(" ");
     			for (var i = 0; i < results.length; i++) {
@@ -76,7 +76,7 @@ $(document).ready(function () {
 		query.contains("subject", keyword);
 		query.find({
 			success: function(results) {
-				alert(results.length + " °³ÀÇ ·¹½ÃÇÇ°¡ ÀÖ½À´Ï´Ù.");
+				alert(results.length + " ê°œì˜ ë ˆì‹œí”¼ê°€ ìˆìŠµë‹ˆë‹¤.");
     			// Do something with the returned Parse.Object values
   				$(".list").html(" ");
     			for (var i = 0; i < results.length; i++) {
@@ -106,11 +106,11 @@ function viewsubmit(item) {
 <br/>
 <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="searchkeyword-check">
   <input type="radio" id="searchkeyword-check" class="mdl-radio__button" name="options" value="" checked />
-  <span class="mdl-radio__label">Å°¿öµå</span>
+  <span class="mdl-radio__label">í‚¤ì›Œë“œ</span>
 </label>
 <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="searchdate-check">
   <input type="radio" id="searchdate-check" class="mdl-radio__button" name="options" value="" />
-  <span class="mdl-radio__label">³¯Â¥</span>
+  <span class="mdl-radio__label">ë‚ ì§œ</span>
 </label>
 <br/>
 
@@ -133,7 +133,7 @@ function viewsubmit(item) {
 <div id="datepicker"></div><br/>
 <input type="hidden" id="datetxt">
 <button id="datesearchbtn" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-Ã£±â
+ì°¾ê¸°
 </button>
 <br/><br/><br/>
 </div>
@@ -144,8 +144,8 @@ function viewsubmit(item) {
 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
   <thead>
     <tr>
-      <th>·¹½ÃÇÇÀÌ¸§</th>
-      <th>º¸±â</th>
+      <th>ë ˆì‹œí”¼ì´ë¦„</th>
+      <th>ë³´ê¸°</th>
     </tr>
   </thead>
   <tbody class="list">

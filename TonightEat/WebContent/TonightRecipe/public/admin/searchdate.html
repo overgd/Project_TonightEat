@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
 <link rel="stylesheet"
@@ -38,7 +38,7 @@ $(document).ready(function () {
 		query.equalTo("date", dateval);
 		query.find({
 			success: function(results) {
-				alert(results.length + " °³ÀÇ ·¹½ÃÇÇ°¡ ÀÖ½À´Ï´Ù.");
+				alert(results.length + " ê°œì˜ ë ˆì‹œí”¼ê°€ ìžˆìŠµë‹ˆë‹¤.");
     			// Do something with the returned Parse.Object values
   				$(".list").html(" ");
     			for (var i = 0; i < results.length; i++) {
@@ -71,7 +71,7 @@ function viewsubmit(item) {
 <div id="datepicker"></div>
 <input type="text" id="datetxt"><br/><br/>
 <button id="searchbtn" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-Ã£±â
+ì°¾ê¸°
 </button>
 </form><br/>
 <form id='itemlist' name='itemlist' action='recipeview.html' method='get'>
@@ -79,9 +79,9 @@ function viewsubmit(item) {
 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
   <thead>
     <tr>
-      <th class="mdl-data-table__cell--non-numeric">±Û¹øÈ£</th>
-      <th>Á¦¸ñ</th>
-      <th>º¸±â</th>
+      <th class="mdl-data-table__cell--non-numeric">ê¸€ë²ˆí˜¸</th>
+      <th>ì œëª©</th>
+      <th>ë³´ê¸°</th>
     </tr>
   </thead>
   <tbody class="list">
