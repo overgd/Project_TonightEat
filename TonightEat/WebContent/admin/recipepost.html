@@ -57,7 +57,7 @@ $(document).ready(function () {
 			image: parseFile
 		
 		}, {
-			success: function(gameScore) {
+			success: function(recipe) {
 				
 			// The object was saved successfully.
 				$("#objectId").val(recipe.id);
@@ -65,7 +65,7 @@ $(document).ready(function () {
 				$("#myform").submit();
 				
 			},
-			error: function(gameScore, error) {
+			error: function(recipe, error) {
 			    // The save failed.
 			    // error is a Parse.Error with an error code and message.
 			    alert("에러입니다."+error.message);
